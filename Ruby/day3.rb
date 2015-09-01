@@ -4,6 +4,7 @@
 class CsvRow
   attr_accessor :values
 
+  #Laat de constructor door de opgegeven headers en waarden loopen om deze te verwerken
   def initialize(headers, values)
     i=0;
     @values ={}
@@ -13,6 +14,8 @@ class CsvRow
     }
   end
 
+  #Wanneer de aangegeven naam bestaat in de variabelen retourneert deze variable
+  #Wanneer de variabele niet bestaat zal de superclasse het afhandelen
   def method_missing(name, *args)
     temp = @values[name.to_s]
     puts @values[name]
@@ -41,6 +44,7 @@ module ActsAsCsv
       file = File.new(filename)
       @headers = file.gets.chomp.split(', ' )
       file.each do |row|
+        #In plaats van de informatie rechtstreeks in de array te pushen zal de data aan de constuctor van CsvRow worden gegeven
         @csv_contents.push(CsvRow.new(@headers, row.chomp.split(', ' )))
       end
     end
@@ -54,6 +58,7 @@ class Persoon # no inheritance! You can mix it in
   include ActsAsCsv
   acts_as_csv
 
+  #Delegeer deze functie door naar de array met resultaten
   def each(&block)
     @csv_contents.each(&block)
   end
@@ -61,6 +66,7 @@ class Persoon # no inheritance! You can mix it in
 end
 m = Persoon.new
 
+#Print de gegevens met de functies
 m.each{|row|
   puts "Persoon"
   puts "Naam: "+ row.naam

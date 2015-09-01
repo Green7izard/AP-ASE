@@ -7,7 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="745d9078-e3d2-4cc9-830e-49dd9aead6f3" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Persoon.txt" afterPath="$PROJECT_DIR$/Persoon.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/day3.rb" afterPath="$PROJECT_DIR$/day3.rb" />
     </list>
     <ignored path="Ruby.iws" />
@@ -59,8 +58,8 @@
       <file leaf-file-name="day3.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/day3.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64084506">
-              <caret line="65" column="19" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.6883803">
+              <caret line="68" column="34" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -671,12 +670,12 @@
       <option name="number" value="Default" />
       <updated>1441098009338</updated>
       <workItem from="1441098011085" duration="5646000" />
-      <workItem from="1441107813263" duration="11421000" />
+      <workItem from="1441107813263" duration="11613000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17067000" />
+    <option name="totallyTimeSpent" value="17259000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="605" y="7" width="1400" height="1000" extended-state="0" />
@@ -761,8 +760,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/day3.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64084506">
-          <caret line="65" column="19" selection-start-line="65" selection-start-column="19" selection-end-line="65" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.6883803">
+          <caret line="68" column="34" selection-start-line="68" selection-start-column="34" selection-end-line="68" selection-end-column="34" />
           <folding />
         </state>
       </provider>
