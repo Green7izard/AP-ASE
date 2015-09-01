@@ -1,4 +1,4 @@
-# Assignment day 1
+# Assignment Ruby day 1
 # Bas van Summeren<BasVanSummeren@hotmail.com>
 
 #Default Output
@@ -40,7 +40,7 @@ puts "Guess the number from 0 to " +highestNumber.to_s+ ":"
 #Loop while not complete
 while (guessed!=number)
   puts "Type your guess (0 to "+highestNumber.to_s+") and press Enter"
-  #Get input from keyboard and convert it to a number
+  #Get input from keyboard and convert it to a number: http://stackoverflow.com/questions/6556280/read-input-from-console-in-ruby
   guessed = gets.chomp().to_i
   #Print the guessed number. NOTE: If something else then a number is guessed, it will be 0
   puts "You guessed: " + guessed.to_s

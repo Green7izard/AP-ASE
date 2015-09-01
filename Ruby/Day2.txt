@@ -1,0 +1,17 @@
+Thus, Controller deals with a basic question in OO design: How to connect the UI layer to the
+application logic layer? Should the Board be the first object to receive the playGame message
+from the UI layer? Or something else?
+In some OOA/D methods, the name controller was given to the application logic object that
+received and "controlled" (coordinated) handling the request.
+The Controller pattern offers the following advice:
+Name: Controller
+Problem: What first object beyond the UI layer receives and coordinates ("controls") a
+system operation?
+Solution:
+(advice)
+Assign the responsibility to an object representing one of these choices:
+Represents the overall "system," a "root object," a device that the
+software is running within, or a major subsystem (these are all
+variations of a facade controller).
+Represents a use case scenario within which the system operation
+occurs (a use case or session controller)
