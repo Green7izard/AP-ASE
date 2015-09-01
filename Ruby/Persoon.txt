@@ -1,0 +1,4 @@
+Naam, Woonplaat, Leeftijd, Geslacht
+Jim, Tokyo Tower, 29, Man
+Bob, Amsterdam, 37, Onzijdig
+Erica, Maaskantje, 28, Vrouw
