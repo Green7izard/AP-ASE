@@ -5,7 +5,7 @@ By Bas van Summeren <BasVanSummeren@hotmail.com>
 
 Includes the Seven Programming langauges in Seven weeks assignments
 Ruby    [Done]
-IO      [Upcomming]
+Io      [Upcomming]
 Prolog  [Planned]
 Scala   [Planned]
 Erlang  [Planned]
