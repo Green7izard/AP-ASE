@@ -4,6 +4,7 @@
 require_relative "day3"
 require "test/unit"
 
+#Source class found at: https://en.wikibooks.org/wiki/Ruby_Programming/Unit_testing
 class TestDay3 < Test::Unit::TestCase
 
   #Basic test to see if the csvrow works
