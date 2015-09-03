@@ -5,7 +5,5 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="ruby-2.2.2-p95" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="power_assert (v0.2.2, ruby-2.2.2-p95) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="test-unit (v3.0.8, ruby-2.2.2-p95) [gem]" level="application" />
   </component>
 </module>
