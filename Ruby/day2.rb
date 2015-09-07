@@ -40,7 +40,6 @@ class Tree
         @children[relationName.to_s] = child
         #if its a hash, use the hash to create a new tree
       elsif (child.is_a?({}.class))
-        temp = child
         @children[relationName.to_s] = Tree.new(relationName, child)
       end
     }
