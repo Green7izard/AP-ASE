@@ -176,7 +176,6 @@ instance print
 
 NumberGuesser := Object clone
 NumberGuesser value := Random value(100) floor
-NumberGuesser value println
 "Guess a number between 0 and 100" println
 NumberGuesser prevDiff := 10000000000000
 NumberGuesser finished := false
