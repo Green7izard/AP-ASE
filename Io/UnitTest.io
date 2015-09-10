@@ -3,8 +3,6 @@ doFile("Day3.io")
 "Unit test for Io Day3 \nBy Bas van Summeren<BasVanSummeren@hotmail.com>"println
 "Source: http://www.javajigi.net/display/WEB20/Io+Language+UnitTest" println
 
-UnitTest proto slotNames println
-
 ListTest := UnitTest clone do (
   testCreate := method(
 	

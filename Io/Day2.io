@@ -4,10 +4,10 @@
 Fibonacci := Object clone
 Fibonacci clone = Fibonacci
 Fibonacci fib := method(number,
-if(number <=2, return 1)
-NotLast :=1
+if(number <=1, return 1)
+NotLast :=0
 Last :=1
-i := 2
+i := 1
 while(i<number, i=i+1; temp := Last + NotLast; NotLast=Last; Last=temp;)
 return Last
 )
@@ -30,8 +30,9 @@ Fibonacci fib(15) println
 "" println
 
 "Overwritten / Function" println
+#Copy the orignal function with the getSlot()
 Number devide := Number getSlot("/")
-
+#Return 0 if the parameter is 0, else use the old one
 Number / = method(number,
 	if(number==0, 0,  self devide(number))
 )
@@ -48,7 +49,6 @@ AverageList get_average := method(
 	total :=0;
 	foreach(
 		number,	
-		
 		if(number proto == Number,
 		total = total + number; ,
 		Exception raise("It isnt a number!");)) 
@@ -172,7 +172,7 @@ instance print
 ""println
 
 "Number Guessing" println
-"http://stackoverflow.com/questions/7735448/random-value-bug-in-io"
+"Found random function at: http://stackoverflow.com/questions/7735448/random-value-bug-in-io"
 
 NumberGuesser := Object clone
 NumberGuesser value := Random value(100) floor
@@ -191,5 +191,3 @@ NumberGuesser guess := method(guessed,
 )
 while(NumberGuesser finished ==false,
 NumberGuesser guess (File standardInput readLine))
-
-

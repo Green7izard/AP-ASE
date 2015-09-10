@@ -57,4 +57,3 @@ TestObject clone = method("The end of day one" println)
 
 "TestObject clone:" println
 TestObject clone
-
