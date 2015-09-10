@@ -1,4 +1,4 @@
-"Answers for Io Day1 \n By Bas van Summeren<BasVanSummeren@hotmail.com>"println
+"Answers for Io Day2 \n By Bas van Summeren<BasVanSummeren@hotmail.com>"println
 "Main guide: http://iolanguage.org/scm/io/docs/IoGuide.html"println
 
 Fibonacci := Object clone
