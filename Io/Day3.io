@@ -34,7 +34,8 @@ squareBrackets := method(call message arguments)
 List squareBrackets := method(
 	newList := List clone
 	call message arguments foreach(value,
-		newList append value;
+		newValue=doMessage(value)
+		newList append newValue;
 		)
 	newList
 )
