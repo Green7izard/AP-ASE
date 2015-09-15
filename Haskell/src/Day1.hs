@@ -44,6 +44,15 @@ multiplyLists x y = [multiplyTuplet a b |a <-x , b <- y]
 multiplyAuto :: [(Integer, Integer, Integer)]
 multiplyAuto = multiplyLists[1..12][1..12]
 
+
+putColors :: [String] -> [(String, String)]
+putColors [] = []
+putColors colors = [[("Alabama", colorAla),("Mississipi", colorMissi), ("Georgia", colorGeorg), ("Tennesee", colorTen), ("Florida", colorFlor)]|
+    colorAla<- colors, colorMissi <- colors, colorGeorg <- colors, colorTen <-colors, colorFlor <- colors,
+    colorMissi /= colorTen, colorMissi /= colorAla,
+    colorAla /=colorTen, colorAla /= colorGeorg, colorAla /= colorFlor,
+    colorGeorg /= colorFlor, colorGeorg /= colorTen]
+
 -- Solve the map-coloring problem (Section 4.2, Map Coloring, on
 -- page 101) using Haskell.
 -- different(red, green). different(red, blue).
