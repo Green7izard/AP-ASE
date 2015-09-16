@@ -27,7 +27,7 @@ reverseList(head:tail) = reverseList(tail) ++ [head]
 colorMatching :: [String] -> [(String, String)]
 --                                                      Compare list position
 colorMatching colors = [(a, b) | a <-colors, b<-colors, a < b]
-
+-- colorMatching ["Rood", "Blauw", "Frietvet"]
 
 -- Lists multiplication
 
@@ -44,26 +44,14 @@ multiplyLists x y = [multiplyTuplet a b |a <-x , b <- y]
 multiplyAuto :: [(Integer, Integer, Integer)]
 multiplyAuto = multiplyLists[1..12][1..12]
 
+-- Paint the states
 
-putColors :: [String] -> [(String, String)]
+putColors :: [String] -> [[ ([Char], String) ]]
 putColors [] = []
-putColors colors = [[("Alabama", colorAla),("Mississipi", colorMissi), ("Georgia", colorGeorg), ("Tennesee", colorTen), ("Florida", colorFlor)]|
-    colorAla<- colors, colorMissi <- colors, colorGeorg <- colors, colorTen <-colors, colorFlor <- colors,
-    colorMissi /= colorTen, colorMissi /= colorAla,
-    colorAla /=colorTen, colorAla /= colorGeorg, colorAla /= colorFlor,
-    colorGeorg /= colorFlor, colorGeorg /= colorTen]
-
--- Solve the map-coloring problem (Section 4.2, Map Coloring, on
--- page 101) using Haskell.
--- different(red, green). different(red, blue).
--- different(green, red). different(green, blue).
--- different(blue, red). different(blue, green).
--- coloring(Alabama, Mississippi, Georgia, Tennessee, Florida) :-
--- different(Mississippi, Tennessee),
--- different(Mississippi, Alabama),
--- different(Alabama, Tennessee),
--- different(Alabama, Mississippi),
--- different(Alabama, Georgia),
--- different(Alabama, Florida),
--- different(Georgia, Florida),
--- different(Georgia, Tennessee).
+-- Use the fact that we have specified states
+-- Get a list of all possible combinations
+putColors colors = [ [ ("Alabama", alabama) , ("Mississipi", mississipi) , ("Georgia", georgia), ("Tennesee", tennesee), ("Florida", florida) ] |
+    alabama<- colors, mississipi <- colors, georgia <- colors, tennesee <-colors, florida <- colors,
+    mississipi /= tennesee, mississipi /= alabama,
+    alabama /=tennesee, alabama /= georgia, alabama /= florida,
+   georgia /= florida, georgia /= tennesee]
