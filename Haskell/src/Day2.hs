@@ -60,9 +60,17 @@ greatestDenominator x 0 = 0
 greatestDenominator 1 y = 1
 greatestDenominator x 1 = 1
 -- http://zvon.org/other/haskell/Outputprelude/mod_f.html
-greatestDenominator x y = last [z|z<-[1 .. y], (mod x z) ==0, (mod y z) ==0]
+greatestDenominator x y = last [ z | z<-[1 .. y], (mod x z) ==0, (mod y z) ==0]
 
 -- Create a lazy sequence of prime numbers.
+
+primes :: [Integer]
+primes = [value| value<-[1..], ((value ==2) || (not (even value))), (highestDenominator value)==1]
+
+highestDenominator :: Integer -> Integer
+highestDenominator 0 = 0
+highestDenominator 1 = 1
+highestDenominator number = last(sort[greatestDenominator z number | z <-[1..number-1]])
 
 -- Break a long string into individual lines at proper word boundaries + Line Numbers + Text Margins
 
