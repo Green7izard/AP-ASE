@@ -3,6 +3,7 @@ module Day2 where
 -- Need the sort function
 -- https://hackage.haskell.org/package/base-4.8.1.0/docs/Data-List.html
 import Data.List
+import Data.Char
 
 easySort :: Ord a =>[a] -> [a]
 easySort list = sort list
@@ -29,18 +30,37 @@ evenSort [] = []
 evenSort list = sortList list evenCompare
 
 -- Convert String to Number
+-- http://stackoverflow.com/questions/2468410/convert-string-to-integer-float-in-haskell
 
-toString :: String -> Integer
-toString "" = 0
+toNumber :: String -> Float
+toNumber [] = 0
+toNumber text = read text ::Float
 
--- Lazy list with paramter X where every third number starts with X. 
--- Lazy list with paramter Y where every 5th number starts with y
+-- Lazy list with paramter X with every third number, starts with X. 
+lazy3 :: Integer -> [Integer]
+lazy3 x = [x, (x+3) ..]
+-- Lazy list with paramter Y with every 5th number, starts with y
+lazy5 :: Integer -> [Integer]
+lazy5 y = [y, y+5 ..]
 -- Lazy list where every 8th number = x+y
+-- http://hackage.haskell.org/package/base-4.8.1.0/docs/Prelude.html#v:zipWith
+lazy8 :: Integer -> Integer -> [Integer]
+lazy8 x y = zipWith(+) (lazy3 x) (lazy5 y)
 
 
--- Use a partially applied function to de?ne a function that will return half of a number and another that will append \n to the end of any string.
+-- Use a partially applied function to define a function that will return half of a number and another that will append \n to the end of any string.
+-- https://wiki.haskell.org/Partial_application
+half = (/2)
+ln = (++"\n")
 
 -- Write a function to determine the greatest common denominator of two integers.
+greatestDenominator :: Integer -> Integer -> Integer
+greatestDenominator 0 y = 0
+greatestDenominator x 0 = 0
+greatestDenominator 1 y = 1
+greatestDenominator x 1 = 1
+-- http://zvon.org/other/haskell/Outputprelude/mod_f.html
+greatestDenominator x y = last [z|z<-[1 .. y], (mod x z) ==0, (mod y z) ==0]
 
 -- Create a lazy sequence of prime numbers.
 
