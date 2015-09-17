@@ -60,7 +60,9 @@ greatestDenominator x 0 = 0
 greatestDenominator 1 y = 1
 greatestDenominator x 1 = 1
 -- http://zvon.org/other/haskell/Outputprelude/mod_f.html
-greatestDenominator x y = maximum [ z | z<-[1 .. y], (mod x z) ==0, (mod y z) ==0]
+greatestDenominator x y = if x>y
+                           then maximum [ z | z<-[1 .. y], (mod x z) ==0, (mod y z) ==0]
+                            else greatestDenominator y x
 
 -- Create a lazy sequence of prime numbers.
 
