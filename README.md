@@ -5,10 +5,10 @@ By Bas van Summeren <BasVanSummeren@hotmail.com>
 
 Includes the Seven Programming langauges in Seven weeks assignments 
 
-Ruby    [Done] 
-Io      [Done] 
-Prolog  [Planned] 
-Scala   [Planned] 
-Erlang  [Planned] 
-Clojure [Planned] 
-Haskell [In Progress] 
+Ruby    [Done] \n
+Io      [Done] \n
+Prolog  [Planned] \n 
+Scala   [Planned] \n
+Erlang  [Planned] \n
+Clojure [Planned] \n
+Haskell [In Progress] \n
