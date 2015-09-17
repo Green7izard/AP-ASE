@@ -75,4 +75,4 @@ highestDenominator 1 = 1
 highestDenominator number = maximum[greatestDenominator z number | z <-[1..number-1]]
 
 -- Break a long string into individual lines at proper word boundaries + Line Numbers + Text Margins
-
+-- Kan geen punt vinden om te beginnen zonder muteerbare variabelen
