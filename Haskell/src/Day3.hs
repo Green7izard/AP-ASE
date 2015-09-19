@@ -40,7 +40,7 @@ exampleMap =  storePair(storePair [] pairOneB) pairTwoB
 --Maze
 
 -- Every part is a node, the start or the end
-data Role = Node | Start | End deriving (Show)
+data Role = Node | Start | End deriving (Show, Eq)
 --Node is a list of possible exit points to specific locations, and a notify if its the start or the end
 type Node = ([(Int, Int)],Role)
 -- A maze is a collection of nodes in a two dimensional space
@@ -57,5 +57,31 @@ exampleMaze = [
                  [([(3,1)], Node),([(3, 2)], Node),([(3,3), (2,3)], Node),([(2,3)], Node)]
               ]
 
+--Solving it
+--The solution is a path of nodes
+type Path = [Node]
 
+solveMaze :: Maze->Path
+solveMaze [] = []
+solveMaze maze = findPath(findStart maze)
+
+findStart :: [[Node]]->Node
+findStart list = head[node|subList<-list, node<-subList, isStart node]
+
+isStart :: Node->Bool
+isStart (list, role) = role==Start
+
+findPath::Maze->Node->Path
+findPath  maze ([], role) = [];
+findPath  maze (exits, role) = do (x, y)<-exits;
+
+towardsEnd::Maze->Node->Path
+--towardsEnd maze(exits, role) = if role == End
+ --                            then ([(exits, role)], True)
+ --                             else if exits==[]
+ --                              then ([(exits, role)], False)
+ --                                else do (x, y)<-exits;
+ --                                 (receivedPath, bool)<- (towardsEnd maze (towardsEnd(getNode maze (x,y))));
+ --                                  (exits, role):receivedPath, bool;
+ 
 
