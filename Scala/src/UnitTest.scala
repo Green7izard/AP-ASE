@@ -59,16 +59,16 @@ class BoardTest extends FunSuite{
   }
   test( "Have Circle as a winner if it has 2 Horizontal squares" ){
     board.reset();
-    board setValue(0, 0, Circle);
-    board setValue(0,1, Circle);
+    board setValue(1, 0, Circle);
+    board setValue(1,1, Circle);
     assert(board.getWinnerHorizontally()===Circle)
     assert( board.getWinner() === Circle);
   }
 
   test( "Have Circle as a winner if it has 2 Vertical squares" ){
     board.reset();
-    board setValue(1, 0, Circle);
-    board setValue(0,0, Circle);
+    board setValue(1, 1, Circle);
+    board setValue(0,1, Circle);
     assert(board.getWinnerVertically()===Circle)
     assert( board.getWinner() === Circle);
   }

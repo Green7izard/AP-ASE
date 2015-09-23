@@ -8,16 +8,8 @@ object Fill extends Enumeration {
 import Fill._
 object Day1 {
   def main(args: Array[String]) {
-    val board = new Board(3)
-    println(board.asString())
-    println(board.getWinner())
-    board.setValue(0,0, Cross)
-    board.setValue(1,1, Cross)
-    board.setValue(2,2, Cross)
-    board.setValue(0,1, Cross)
-    board.setValue(2,1, Cross)
-    println(board.getWinner())
-    println(new Player("Bas", Circle).getTurn())
+    val game = new TicTacToe("Bas", "Peter", 3);
+    game.play();
   }
 }
 
@@ -83,6 +75,15 @@ class Board(val size: Int) {
       string += "\n"
     }
     return string
+  }
+
+  def isFull():Boolean={
+    for (i <- 0 to size - 1) {
+      for (j <- 0 to size - 1) {
+        if(board(i)(j).fill==Empty)return false;
+      }
+    }
+    return true;
   }
 
   def setValue(x: Int, y: Int, newValue: Fill): Boolean = {
@@ -160,7 +161,7 @@ class Player(val name :String, val playType:Fill)
     println("Player: "+ name +"'s Turn: Fill in 2 number seperated by a ',' (1,1)")
     //Read user input until it matches the regex: [0-9]+,[0-9]
     // http://hedleyproctor.com/2012/10/practical-scala-file-io-and-regular-expressions/
-    val reg = new Regex("[0-9]+,[0-9]")
+    val reg = new Regex("[0-9]*+,[0-9]*")
     reg.findFirstIn(scala.io.StdIn.readLine()) match{
       case Some(value) => {
         val split = value.split(",");
@@ -176,4 +177,56 @@ class TicTacToe(val PlayerOneName:String, val PlayerTwoName:String, val boardSiz
   val board = new Board(boardSize)
   val PlayerOne = new Player(PlayerOneName, Cross)
   val PlayerTwo = new Player(PlayerTwoName, Circle)
+  var lastPlayer:Fill = Empty;
+
+  def printBoard(): Unit ={
+    println(board.asString());
+  }
+
+  def nextTurn(): Unit ={
+    //Fugly manier om het op te lossen doordat val niet hetzelfde werkt als een final in Java
+    var currentPlayer:Player = null;
+    if(lastPlayer==Cross) { currentPlayer = PlayerTwo}
+    else { currentPlayer = PlayerOne;}
+    var input:(Int, Int, Fill) =null;
+    var result = false;
+    do{
+      input= currentPlayer.getTurn();
+      result = board.setValue(input._1 , input._2, input._3)
+      if(!result) println("That square is already filled, or out of bounds! Try again:")
+    }while(!result)
+    lastPlayer=currentPlayer.playType
+  }
+  def checkWinner(): Player ={
+    if(board.getWinner()==PlayerOne.playType)
+      PlayerOne
+    else if(board.getWinner()==PlayerTwo.playType)
+      PlayerTwo
+    else null
+  }
+
+  def playAgain(): Unit={
+    println("Game is over! Play again?(y/n)")
+    if(scala.io.StdIn.readLine().contains("y"))
+      {
+        board.reset();
+        play();
+      }
+  }
+  def play(): Unit ={
+    println("Start Game: ")
+    printBoard()
+    do{
+      nextTurn();
+      printBoard()
+    } while(checkWinner()==null&&board.isFull()==false)
+    if(checkWinner()!=null)
+    {
+        println(checkWinner().name + " has won the game with: "+checkWinner().playType)
+    }
+    else{
+      println("The game has ended in a draw!")
+    }
+  playAgain()
+  }
 }
