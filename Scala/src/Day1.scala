@@ -1,20 +1,28 @@
 /**
  * Created by Bas on 22-9-2015.
  */
-object Day1 {
-
-  def main(args: Array[String]) {
-    val board = new Board(3)
-    println(board.asString())
-  }
-}
-
 object Fill extends Enumeration {
   type Fill = Value
   val Empty, Cross, Circle = Value
 }
-
 import Fill._
+object Day1 {
+  def main(args: Array[String]) {
+    val board = new Board(3)
+    println(board.asString())
+    println(board.getWinner())
+    board.setValue(0,0, Cross)
+    board.setValue(1,1, Cross)
+    board.setValue(2,2, Cross)
+    board.setValue(0,1, Cross)
+    board.setValue(2,1, Cross)
+    println(board.getWinner())
+  }
+}
+
+
+
+
 
 class Square() {
   var fill = Empty
@@ -40,9 +48,6 @@ class Square() {
 
 import Array._
 
-//http://stackoverflow.com/questions/2742719/how-do-i-break-out-of-a-loop-in-scala
-
-import scala.util.control.Breaks._
 
 class Board(val size: Int) {
   //http://www.tutorialspoint.com/scala/scala_arrays.htm
@@ -80,41 +85,66 @@ class Board(val size: Int) {
     else return false
   }
 
-  def getWinner(): Fill = {
-    for (i <- 0 to size - 1) {
-      val row = board(i)(0).fill
+  def getWinnerHorizontally(): Fill={
+    var row:Fill = Empty
+    for (x <- 0 to size - 1) {
+      row = board(x)(0).fill
       if (row != Empty) {
-        for (j <- 1 to size - 1) {
-          if (board(i)(j) != row) break;
-          else if (j == size - 1) return row;
+        for (y <- 1 to size - 1) {
+          if (board(x)(y).fill != row) return Empty;
+          else if(y==size-1) return row;
         }
       }
     }
+    return row;
+  }
 
-    for (j <- 0 to size - 1) {
-      val row = board(0)(j).fill
+  def getWinnerVertically():Fill={
+    var row = Empty
+    for (y <- 0 to size - 1) {
+      row = board(0)(y).fill
       if (row != Empty) {
-        for (i <- 1 to size - 1) {
-          if (board(i)(j) != row) break;
-          else if (i == size - 1) return row;
+        for (x <- 1 to size - 1) {
+          if (board(x)(y).fill != row) return Empty
+          else if(x==size-1) return row;
         }
       }
     }
+    return row
+  }
 
+  def getWinnerDiagonalTopLeftBotRight():Fill ={
+    var row = Empty
     if (board(0)(0).fill != Empty) {
-      val row = board(0)(0).fill
+      row = board(0)(0).fill
       for (i <- 1 to size - 1) {
-        if (board(i)(i) != row) break;
-        else if (i == size - 1) return row;
+        if (board(i)(i).fill != row) return Empty;
       }
     }
+    return row
+  }
+
+  def getWinnerDiagonalBotLeftTopRight():Fill ={
+    var row = Empty
     if (board(size - 1)(0).fill != Empty) {
-      val row = board(0)(size - 1).fill
+      row = board(0)(size - 1).fill
       for (i <- 1 to size - 1) {
-        if (board(i)((size - 1) - i) != row) break;
-        else if (i == size - 1) return row;
+        if (board(i)((size - 1) - i).fill != row) return Empty;
       }
     }
-    return Empty;
+    return row
+  }
+
+  def getWinner(): Fill = {
+    var winner = Empty;
+    winner=getWinnerHorizontally()
+    if(winner!=Empty) return winner
+    winner=getWinnerVertically()
+    if(winner!=Empty) return winner
+    winner=getWinnerDiagonalTopLeftBotRight()
+    if(winner!=Empty) return winner
+    winner=getWinnerDiagonalBotLeftTopRight()
+    if(winner!=Empty) return winner
+    return winner;
   }
 }
