@@ -69,9 +69,13 @@ class Board(val size: Int) {
   }
 
   def asString(): String = {
-    var string: String = "";
+    var string: String = "x|";
+    for (j <- 0 to size - 1) {
+      string += j+"|"
+    }
+    string +="\n"
     for (i <- 0 to size - 1) {
-      string += "|"
+      string += i+ "|"
       for (j <- 0 to size - 1) {
         string += board(i)(j).asString();
         string += "|"
@@ -168,4 +172,8 @@ class Player(val name :String, val playType:Fill)
 
 }
 
-
+class TicTacToe(val PlayerOneName:String, val PlayerTwoName:String, val boardSize:Int){
+  val board = new Board(boardSize)
+  val PlayerOne = new Player(PlayerOneName, Cross)
+  val PlayerTwo = new Player(PlayerTwoName, Circle)
+}
