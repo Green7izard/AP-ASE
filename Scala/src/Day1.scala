@@ -17,6 +17,7 @@ object Day1 {
     board.setValue(0,1, Cross)
     board.setValue(2,1, Cross)
     println(board.getWinner())
+    println(new Player("Bas", Circle).getTurn())
   }
 }
 
@@ -148,3 +149,23 @@ class Board(val size: Int) {
     return winner;
   }
 }
+import scala.util.matching.Regex
+class Player(val name :String, val playType:Fill)
+{
+  def getTurn():(Int, Int, Fill)={
+    println("Player: "+ name +"'s Turn: Fill in 2 number seperated by a ',' (1,1)")
+    //Read user input until it matches the regex: [0-9]+,[0-9]
+    // http://hedleyproctor.com/2012/10/practical-scala-file-io-and-regular-expressions/
+    val reg = new Regex("[0-9]+,[0-9]")
+    reg.findFirstIn(scala.io.StdIn.readLine()) match{
+      case Some(value) => {
+        val split = value.split(",");
+        return (split(0).toInt, split(1).toInt, playType)
+      }
+      case None =>{println("Invalid input"); return getTurn()}
+    }
+  }
+
+}
+
+
