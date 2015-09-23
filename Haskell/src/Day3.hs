@@ -50,20 +50,27 @@ getNode ::Maze->(Int, Int)->Node
 getNode [] loc = ([(-1, -1)], Node)
 getNode maze (x, y) = (maze !! x)!!y
 
+smallMaze = [
+               [([(0::Int,1::Int), (1,0)],Start), ([(1,1)],Node)],
+               [([],Node), ([],End)]
+            ]
+
+exampleMaze::Maze
 exampleMaze = [
-                 [([(0::Int,1::Int), (1::Int,0::Int)], Start), ([(0::Int, 2::Int)], Node),([(0::Int, 3::Int)], Node),([(1::Int, 3::Int)], Node)],
-                 [([(1,2)], Node), ([(2, 2)], Node), ([], End), ([], Node)],
-                 [([(3,0)], Node),([(2, 1)], Node),([(1,3)], Node),([(1,3)], Node)],
-                 [([(3,1)], Node),([(3, 2)], Node),([(3,3), (2,3)], Node),([(2,3)], Node)]
+                 [([(0,1), (1,0)], Start), ([(2, 0)], Node),([(3,0)]       , Node)  ,([(3, 1)], Node)],
+                 [([(1,1)]       , Node) , ([(1, 2)], Node),([]            , End)   ,([], Node)],
+                 [([(0,3)]       , Node) , ([(0, 2)], Node),([(2,1)]       , Node)  ,([(3,1)], Node)],
+                 [([(1,3)]       , Node) , ([(2, 3)], Node),([(3,3), (2,2)], Node)  ,([(3,2)], Node)]
               ]
 
 --Solving it
 --The solution is a path of nodes
 type Path = [Node]
 
-solveMaze :: Maze->Path
-solveMaze [] = []
-solveMaze maze = findPath(findStart maze)
+
+getNextNodes::Maze->Node->[Node]
+getNextNodes [] nodes = []
+getNextNodes maze (exits, role)=[getNode maze x| x<-exits]
 
 findStart :: [[Node]]->Node
 findStart list = head[node|subList<-list, node<-subList, isStart node]
@@ -71,17 +78,33 @@ findStart list = head[node|subList<-list, node<-subList, isStart node]
 isStart :: Node->Bool
 isStart (list, role) = role==Start
 
-findPath::Maze->Node->Path
-findPath  maze ([], role) = [];
-findPath  maze (exits, role) = do (x, y)<-exits;
+isEnd::Node->Bool
+isEnd (exits, role)= role==End
 
-towardsEnd::Maze->Node->Path
---towardsEnd maze(exits, role) = if role == End
- --                            then ([(exits, role)], True)
- --                             else if exits==[]
- --                              then ([(exits, role)], False)
- --                                else do (x, y)<-exits;
- --                                 (receivedPath, bool)<- (towardsEnd maze (towardsEnd(getNode maze (x,y))));
- --                                  (exits, role):receivedPath, bool;
- 
+hasEnd::Path-> Bool
+hasEnd path = isEnd(last path)
 
+containsEnd::[Path]-> Bool
+containsEnd [] = False;
+containsEnd (h:t) = if(hasEnd h) then True else containsEnd t
+
+possibleNext::Maze->Path->[Path]
+possibleNext maze [] = []
+possibleNext maze path = [path++[newNode]| newNode<-(getNextNodes maze (last path))]
+
+nextPath::Maze->[Path]->Int->[Path]
+nextPath maze [] numb = []
+nextPath maze paths numb = [newPaths|path<-paths, newPaths<-possibleNext maze path, length newPaths>=numb||hasEnd newPaths ]
+
+filterPaths::[Path]->[Path]
+filterPaths [] = []
+filterPaths paths = [enders|enders<-paths, hasEnd enders]
+
+
+findPaths::Maze->[Path]->Int->[Path]
+findPaths maze [] numb = []
+findPaths maze paths numb = if containsEnd paths then filterPaths paths else findPaths maze (nextPath maze paths (numb)) (numb+1)
+
+solveMaze::Maze->[Path]
+solveMaze [] = []
+solveMaze maze = findPaths maze [[findStart maze]] 2
