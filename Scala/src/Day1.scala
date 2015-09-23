@@ -1,12 +1,13 @@
-package nl.han.ica.bas
-
+/**
+ * Created by Bas on 22-9-2015.
+ */
 object Day1 {
 
-      def main(args: Array[String]) {
-       val board = new Board(3)
-        println(board.asString())
-      }
+  def main(args: Array[String]) {
+    val board = new Board(3)
+    println(board.asString())
   }
+}
 
 object Fill extends Enumeration {
   type Fill = Value
