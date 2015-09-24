@@ -6,6 +6,7 @@ object Day2 {
     val text = "Its time for scale day 2! See this new day in its glory!"
     println("Getting the length of the string: '" +text +"' split at the ' '")
     println("Length = "+ getTotalLength(text.split(" ")))
+    println ("---------------------------------------------------------------------")
     println("Going to clean string: ")
     val cursedText ="Darn it! Shoot me! For fucks sake please just damn it all"
     println(cursedText)

@@ -1,14 +1,6 @@
 /**
  * Created by Bas on 22-9-2015.
  * http://www.scalatest.org/quick_start
- */
-
-import collection.mutable.Stack
-import org.scalatest._
-
-/**
- * Created by Bas on 22-9-2015.
- * http://www.scalatest.org/quick_start
  * http://www.scalatest.org/getting_started_with_fun_suite
  */
 
