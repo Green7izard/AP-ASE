@@ -17,8 +17,9 @@ class PageSizeReader(urls: List[String]) {
 
   def getPageSizeSequentially() = {
     for (url <- urls) {
-      println("Size for " + url + ": "
-        + PageLoader.getPageSize(url))
+      val urlData= PageLoader.getPageSize(url)
+      println("Size for " + url + ": " + urlData._1+ " With "+urlData._2.size+" Links")
+      urlData._2.foreach(print)
     }
   }
 
@@ -30,16 +31,23 @@ class PageSizeReader(urls: List[String]) {
       }
     }
     for (i <- 1 to urls.size) {
-      receive { case (url, size) => println("Size for "
+      receive { case (url, (size:Int, subUrls:List[String])) => println("Size for "
         + url +
         ": "
-        + size)
+        + size +" With "+ subUrls.size +" links")
       }
     }
   }
+  //http://www.mkyong.com/regular-expressions/how-to-extract-html-links-with-regular-expression/
+  val linkReg = "\\s*(?i)href\\s*=\\s*\\\"(([^\"]*\\\")|'[^']*'|([^'\">\\s]+))\\\"".r
 
   object PageLoader {
-    def getPageSize(url: String) = Source.fromURL(url).mkString.length
+    def getPageSize(url: String):(Int, List[String]) = {
+      val source = Source.fromURL(url)
+      val links:List[String] = (for (m <- linkReg findAllMatchIn source.mkString) yield m group 1).toList
+      //val links = scala.xml.XML.loadString(source) \ "a";
+      (source.mkString.length, links.filter(_.startsWith("http")).toList)
+    }
   }
 
 }
