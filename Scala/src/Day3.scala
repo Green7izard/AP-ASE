@@ -79,7 +79,7 @@ object Day3 {
   def main(args: Array[String]): Unit = {
     //Google niet meegenomen met een circulaire referentie, Twitter is leeg
     //Systeem kan geen circel referenties verwerken
-    val urls = List("http://www.amazon.com/", "http://www.twitter.com/", "http://www.w3schools.com/")
+    val urls = List("http://www.amazon.com/", "http://www.dropbox.com/", "http://www.w3schools.com/")
     val reader = new PageSizeReader(urls)
     println("Sequential run:")
     reader.timeMethod {
