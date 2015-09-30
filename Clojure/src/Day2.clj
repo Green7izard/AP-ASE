@@ -1,5 +1,8 @@
 ;; Clojure Day 2
 ;; Bas van Summeren <BasvanSummeren@hotmail.com>
+
+;;This line is added so that the UnitTest has a name space to refer to. http://nakkaya.com/2009/11/18/unit-testing-in-clojure/
+(ns Day2)
 (defmacro unless [test body else] (list 'if (list 'not test) body else))
 
 (println "Unless true :incorrect :correct becomes: " (unless true :incorrect :correct))
@@ -12,7 +15,7 @@
   (roll [d])
   )
 
-::https://clojuredocs.org/clojure.core/rand-int
+;;https://clojuredocs.org/clojure.core/rand-int
 (defrecord DefaultDice [] Dice
      (roll[d](+ (rand-int 6) 1))
      (toString [this] (str "[" (this) "]" ))
