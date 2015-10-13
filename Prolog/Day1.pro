@@ -1,3 +1,6 @@
+%Day1 of Prolog
+%By Bas van Summeren<Bas van Summeren@hotmail.com>
+
 book(bernini_mysterie).
 book(inferno).
 book(da_vinci_code).

@@ -1,3 +1,5 @@
+%Day2 of Prolog
+%By Bas van Summeren<Bas van Summeren@hotmail.com>
 
 reverseList([], []).
 reverseList([X], [X]).
