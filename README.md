@@ -7,8 +7,8 @@ Includes the Seven Programming languages in Seven weeks assignments
 
 Ruby    [Done] 
 Io      [Done] 
-Prolog  [Planned] 
+Prolog  [In progress] 
 Scala   [Sort of Done] 
-Erlang  [Planned] 
-Clojure [In Progress] 
+Erlang  [In Progress] 
+Clojure [2/3] 
 Haskell [Sort of Done] 

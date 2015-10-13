@@ -1,0 +1,8 @@
+['Day1.pro'].
+
+writtenby(What, dan_brown). a
+writtenby(What, bruce_tate). a
+
+
+musician_intstrument(What, guitar). a
+
