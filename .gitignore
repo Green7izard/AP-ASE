@@ -3,4 +3,5 @@
 /Io/store.txt
 **/temp/
 Haskell/dist/
-Scala/out/
+**/out/
+Erlang/erl_crash.dump
