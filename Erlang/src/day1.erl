@@ -9,9 +9,9 @@
 -author("Bas van Summeren").
 
 %% API
--export([executeDay1/0, countWords/1, recursionCounter/0, printStatus/1]).
+-export([execute/0, countWords/1, recursionCounter/0, printStatus/1]).
 
-executeDay1()->io:fwrite("Counting the words of: 'Het is dag 1 van Erlang! Lang leve deze Taal!' : ~B ~n",[countWords("Het is dag 1 van Erlang! Lang leve deze Taal!")]),
+execute()->io:fwrite("Counting the words of: 'Het is dag 1 van Erlang! Lang leve deze Taal!' : ~B ~n",[countWords("Het is dag 1 van Erlang! Lang leve deze Taal!")]),
               io:fwrite("~nStarting Count:~n"), recursionCounter(), io:fwrite("~n"),
               io:fwrite("~nPrinting a Succes state:~n"),printStatus("success"),
               io:fwrite("Printing a error with message: 'Illegal Argument':~n"), printStatus({error, "Illegal Argument"}).
