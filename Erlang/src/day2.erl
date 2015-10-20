@@ -11,7 +11,7 @@
 %% API
 -export([execute/0, getValue/2, exampleList/0, getTotalPrice/1, determineWinner/1]).
 
-execute()->io:fwrite("Day 2 of erlang"),
+execute()->io:fwrite("Day 2 of erlang~n"),
 io:fwrite("Searching for key: erlang in the list: ~w ~n", [exampleList()]),
 io:fwrite("Value is: ~s ~n~n",[getValue(exampleList(), erlang)]),
 io:fwrite("Getting the prices for: ~w ~n", [exampleItems()]),
